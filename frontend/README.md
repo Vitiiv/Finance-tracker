@@ -33,3 +33,10 @@ Abaixo está a estrutura de pastas do projeto, com uma breve descrição de cada
 - **[@vitejs/plugin-vue](https://github.com/vitejs/vite/tree/main/packages/plugin-vue)**: Plugin oficial do Vue para Vite.
 - **[vite](https://vitejs.dev/)**: Ferramenta de build rápida para projetos front-end.
 - **[typescript](https://www.typescriptlang.org/)**: Superset do JavaScript que adiciona tipagem estática.
+
+### 🎨 Design de Referência
+
+Este projeto utiliza como base o seguinte design no Figma:
+
+- [Figma - Ringku - Financial Web App and Mobile App](https://www.figma.com/community/file/1158392328642074006)
+- [Figma - Free Finance Dashboard UI](https://www.figma.com/community/file/1366429747648852557)
