@@ -32,6 +32,8 @@ const port = process.env.PORT; // Por padrão, muitos desenvolvedores usam a por
 // Sem isso, uma aplicação frontend rodando em outro endereço (como localhost:5173) não conseguiria se comunicar com o servidor.
 app.use(cors());
 
+app.use(express.json()); // Configura o servidor para aceitar requisições no formato JSON.
+
 // Configura o servidor para usar as rotas definidas no arquivo 'router'.
 // Todas as requisições que chegarem ao servidor na raiz ('/') serão encaminhadas para o 'router', que decide o que fazer com elas.
 app.use('/', router);

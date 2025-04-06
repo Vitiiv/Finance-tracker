@@ -1,33 +1,58 @@
 <template>
+  <!-- Div Pai -->
+  <div style="background-color: #EEF2F5;" 
+  class="h-screen w-screen flex justify-center flex items-center">
+    <!-- Div Filho -->
+    <div style="background-color: #FFFFFF;"
+      class="w-xl h-[32rem] rounded-sm flex flex-col justify-between p-16">
+      <!-- Header a subtitle -->
+      <section class="flex-col">
+        <p class="text-3xl font-bold mb-4">
+          Back to your digital life
+        </p>
+        <p class="text-lg text-[#545454]">
+          Choose one of the option to go
+        </p>
+        
+      </section>
 
-  <p>Resposta do servidor {{ loginStores.dataAPI }}</p>
+      <!-- Inputs -->
+      <section class="my-10 flex-col flex gap-y-4">
+        <Input
+          type="email"
+          placeholder="Email"
+          class="h-[69px]" 
+          @update:model-value="(value) => authStore.email = value"
+        />
+        
+        <Input
+          type="password"
+          placeholder="Password"
+          class="h-[69px]"
+          @update:model-value="(value) => authStore.password = value"
+        />
+      </section>
+   
+      <!-- Button -->
+      <Button
+        class="w-2xs h-[62px] self-center cursor-pointer"
+        @click="authStore.login()"
+      >
+        Login
+      </Button>
+
+    </div>
+  </div>
 </template>
 
+
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { useLoginStores } from './stores/loginStores';
-const loginStores = useLoginStores();
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import {useAuthStore} from '@/stores/useAuthStore';
 
-onMounted(async () => {
-  await loginStores.getData();
-});
-
+const authStore = useAuthStore();
 </script>
 
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style></style>

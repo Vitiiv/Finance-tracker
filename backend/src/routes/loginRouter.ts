@@ -10,7 +10,7 @@ const loginRouter = Router();
 const loginController = new LoginController();
 
 // Define a rota GET '/login' que usa a função 'loginAuth' do controlador.
-loginRouter.get('/login', loginController.loginAuth);
+loginRouter.post('/login', loginController.loginAuth);
 
 // Exporta as rotas de login.
 export default loginRouter;
