@@ -15,7 +15,6 @@ Abaixo está a estrutura de pastas do projeto, com uma breve descrição de cada
 - **`src/services/`**: Contém funções para realizar chamadas à API do back-end.
 - **`src/styles/`**: Contém arquivos de estilos globais e específicos para componentes.
 - **`src/routes/`**: Contém rotas da aplicação.
-- **`src/services/`**: Contém todas as chamadas para realizar uma requisição para o Back-End.
 - **`src/App.vue`**: Componente principal que define a estrutura da aplicação.
 - **`src/main.ts`**: Arquivo de entrada que inicializa o Vue e configura o Pinia.
 
