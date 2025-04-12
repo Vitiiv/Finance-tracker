@@ -73,8 +73,20 @@
             </NavigationMenu>
             
             <div class="flex items-center gap-4">
-              <Button variant="outline" size="sm">Entrar</Button>
-              <Button size="sm">Registrar</Button>
+              <Button
+								variant="outline"
+								size="sm"
+								class="cursor-pointer"
+								@click="router.push('/login')"
+							>
+								Entrar
+							</Button>
+              <Button
+								size="sm"
+								class="cursor-pointer"
+							>
+								Registrar
+							</Button>
             </div>
           </div>
         </div>
@@ -326,41 +338,47 @@
     </div>
   </template>
   
-  <script setup lang="ts">
-  import { 
-    LayoutIcon, 
-    ArrowRightIcon, 
-    ZapIcon, 
-    ShieldIcon, 
-    BarChartIcon,
-    MailIcon,
-    PhoneIcon,
-    MapPinIcon,
-    FacebookIcon,
-    TwitterIcon,
-    InstagramIcon,
-    LinkedinIcon
-  } from 'lucide-vue-next';
-  
-  // Importando componentes do Shadcn UI para Vue
-  import { 
-    Button,
-    Card, 
-    CardContent, 
-    CardDescription, 
-    CardFooter, 
-    CardHeader, 
-    CardTitle,
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-    Input,
-    Label
-  } from '@/components/ui';
-  </script>
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+import {
+	LayoutIcon,
+	ArrowRightIcon,
+	ZapIcon,
+	ShieldIcon,
+	BarChartIcon,
+	MailIcon,
+	PhoneIcon,
+	MapPinIcon,
+	FacebookIcon,
+	TwitterIcon,
+	InstagramIcon,
+	LinkedinIcon
+} from 'lucide-vue-next';
+
+// Importando componentes do Shadcn UI para Vue
+import {
+	Button,
+	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+	NavigationMenu,
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuList,
+	NavigationMenuTrigger,
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	Input,
+	Label
+} from '@/components/ui';
+
+// Variáveis 
+const router = useRouter();
+
+</script>

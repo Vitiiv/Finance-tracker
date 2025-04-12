@@ -13,7 +13,9 @@ export class LoginController {
         const authService = new AuthService();
 
         // Tenta autenticar o usuário com email e senha.
-        authService.signIn(email, password).then(async (response) => {
+        authService.signIn(email, password)
+        .then(async (response) => {
+            console.log(response)
             res.status(200).json(response.data);
         }).catch((error) => {
             // Se ocorrer um erro, envia uma resposta de erro 401 (não autorizado).

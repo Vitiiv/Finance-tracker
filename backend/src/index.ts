@@ -42,5 +42,5 @@ app.use('/', router);
 // Quando o servidor estiver ativo, a função de callback será executada, mostrando mensagens no console.
 app.listen(port, () => {
     // Exibe no console uma mensagem simples para confirmar que o servidor está funcionando.
-    console.log('[SERER] Server is running...');
+    console.log('[SERVER] Server is running...');
 });

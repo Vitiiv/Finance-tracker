@@ -18,7 +18,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Suporte para Vue */
+    "types": ["vite/client", "vue"], // Adiciona tipos para Vite e Vue
+    "baseUrl": ".", // Para resolver aliases
+    "paths": {
+      "@/*": ["src/*"] // Suporte ao alias @ usado no projeto
+    }
   },
-  "include": ["vite.config.ts"]
+  "include": ["src/**/*", "src/**/*.vue", "vite.config.ts"], // Inclui arquivos Vue e tudo em src/
+  "exclude": ["node_modules", "dist"] // Exclui pastas desnecessárias
 }

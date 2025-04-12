@@ -5,3 +5,5 @@ export { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 export { Avatar, AvatarFallback, AvatarImage } from './avatar';
 export { Input } from './input';
 export { Label } from './label';
+export { Checkbox } from './checkbox';
+export { Toaster } from "./sonner"
