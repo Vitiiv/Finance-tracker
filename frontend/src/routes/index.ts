@@ -2,22 +2,25 @@ import { createRouter, createWebHistory } from 'vue-router'
 import WelcomePage from '@/pages/WelcomePage.vue';
 import LoginPage from '@/pages/LoginPage.vue';
 import Dashboard from '@/pages/Dashboard.vue';
+import { AuthService } from '@/services/AuthService';
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: WelcomePage,
+    meta: { requiresAuth: false }
   },
   {
     path: '/login',
     name: 'login',
     component: LoginPage,
+    meta: { requiresAuth: false }
   },
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: Dashboard,
+    component: Dashboard, //Dentro do programa
     meta: { requiresAuth: true }, // Requer autenticação
   }
   // {
@@ -34,37 +37,32 @@ const router = createRouter({
 
 // Verificação de autenticação antes de cada rota
 router.beforeEach(async (to, from, next) => {
-  // Função para verificar autenticação (exemplo com Supabase ou token)
-  const isAuthenticated = async () => {
-    // Simples: verifica se há um token no localStorage
-    const token = localStorage.getItem('userToken');
-    if (!token) return false;
+  // Valida se a rota requer autenticação
+  if (to.meta.requiresAuth == false) {
+    next();
+    return;
+  }
 
-    // Opcional: Valida o token com o backend (ex.: Supabase)
-    try {
-      // Integre com sua SupabaseService, se necessário
-      const response = await fetch('sua-api/verificar-token', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      return response.ok;
-    } catch {
-      return false;
-    }
+  // Os restante desse bloco serão executados as validações de autenticação
+  // Verifica se existe um token de acesso no sessionStorage
+  if (sessionStorage.getItem('access_token') == null) {
+    router.push('/login');
+    next();
+    return
   };
 
-  // Se a rota exige autenticação e o usuário não está autenticado
-  if (to.meta.requiresAuth && !(await isAuthenticated())) {
-    // Redireciona para login, mantendo a rota desejada para redirecionar após login
-    return next({ name: 'login', query: { redirect: to.fullPath } });
-  }
-
-  // Se o usuário está autenticado e tenta acessar login/register, redireciona para dashboard
-  if ((to.name === 'login' || to.name === 'register') && (await isAuthenticated())) {
-    return next({ name: 'dashboard' });
-  }
-
-  // Libera o acesso
-  next();
+  // Verifica se o token de acesso é válido
+  await AuthService.validateToken()
+    .then((response) => {
+      sessionStorage.setItem('access_token', response.data.token);
+    })
+    .catch((error) => {
+      sessionStorage.removeItem('access_token');
+      router.push('/login');
+      return;
+    })
+  
+  next();   // Libera o acesso
 });
 
 export default router

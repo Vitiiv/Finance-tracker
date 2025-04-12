@@ -17,7 +17,7 @@
       <!-- Formulário de login -->
       <Card>
         <CardContent class="pt-6">
-          <form @submit.prevent="authStore.login()" class="space-y-4">
+          <form @submit.prevent="authStore.login(router)" class="space-y-4">
             <div class="space-y-2">
               <Label for="email">Email</Label>
               <Input 
