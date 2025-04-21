@@ -1,6 +1,9 @@
 <template>
-    <div class="w-screen h-screen flex flex-row items-center">
+    <div class="w-dvw h-dvh flex flex-row items-center">
         <SideBar />
+        <div class="flex-1 overflow-auto">
+            <router-view />
+        </div>
     </div>
 </template>
 

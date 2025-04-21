@@ -2,7 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import WelcomePage from '@/pages/WelcomePage.vue';
 import LoginPage from '@/pages/LoginPage.vue';
 import Dashboard from '@/pages/Dashboard.vue';
+import Overview from '@/pages/OverviewPage.vue';
 import { AuthService } from '@/services/AuthService';
+import WalletPage from '@/pages/WalletPage.vue';
+import ChartsPage from '@/pages/ChartsPage.vue';
+import CardsPage from '@/pages/CardsPage.vue';
 
 const routes = [
   {
@@ -22,7 +26,39 @@ const routes = [
     name: 'dashboard',
     component: Dashboard, //Dentro do programa
     meta: { requiresAuth: true }, // Requer autenticação
-  }
+    children: [
+      {
+        path: '',
+        name: 'dashboard-home',
+        component: Overview, //Dentro do programa
+        meta: { requiresAuth: true }, // Requer autenticação
+      },
+      {
+        path: 'overview',
+        name: 'dashboard-overview',
+        component: Overview, //Dentro do programa
+        meta: { requiresAuth: true }, // Requer autenticação
+      },
+      {
+        path: 'wallet',
+        name: 'dashboard-wallet',
+        component: WalletPage,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'charts',
+        name: 'dashboard-charts',
+        component: ChartsPage,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'cards',
+        name: 'dashboard-cards',
+        component: CardsPage,
+        meta: { requiresAuth: true },
+      }
+    ]
+  },
   // {
   //   path: '/:pathMatch(.*)*', // Captura qualquer rota inválida
   //   name: 'not-found',
