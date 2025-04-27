@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { watch } from "vue";
 
 export const useMainStore = defineStore("mainStore", {
     state: () => ({

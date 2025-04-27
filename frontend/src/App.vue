@@ -1,6 +1,8 @@
 <template>
-  <router-view/>
-  <Toaster />
+	<div class="w-dvw h-dvh">
+		<router-view />
+		<Toaster />
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -19,4 +21,7 @@ onMounted(() => {
 </script>
 
 <style>
+html, body, #app {
+  height: 100%;
+}
 </style>

@@ -1,40 +1,21 @@
 <template>
-    <div class="w-[66px] h-[90%] bg-[#121212] rounded-full ml-[32px] flex flex-col items-center py-6">
+    <div class="w-[66px] h-full bg-[#121212] rounded-full flex flex-col items-center py-6">
         <!-- Logo -->
         <RiBarChartLine class="h-10 w-10 text-gray-100 mb-12 cursor-pointer" />
         <!-- Buttons -->
         <div class="flex flex-col items-center justify-start grow gap-4 text-gray-100">
-            <Button
-                variant="primary"
-                class="custom-button-padding"
-                @click="router.push('/dashboard/overview')"
-            >
-                <RiFunctionFill class="custom-icon-size" />
-            </Button>
 
             <Button
                 variant="primary"
                 class="custom-button-padding"
-                @click="router.push('/dashboard/wallet')"
+                v-for="button in navigationStore.getSideBarButtons"
+                :key="button.title"
+                :class="button.path === route.path ? 'bg-[#00FF6B]' : ''"
+                @click="router.push(button.path)"
             >
-                <RiWallet2Fill class="custom-icon-size fill-current" />
+                <component :is="button.icon" class="custom-icon-size" />
             </Button>
 
-            <Button
-                variant="primary"
-                class="custom-button-padding"
-                @click="router.push('/dashboard/charts')"
-            >
-                <RiBarChart2Fill class="custom-icon-size"/>
-            </Button>
-
-            <Button
-                variant="primary"
-                class="custom-button-padding"
-                @click="router.push('/dashboardcards')"
-            >
-                <RiBankCardFill class="custom-icon-size" />
-            </Button>
         </div>
         <!-- Toggle Theme -->
         <Button
@@ -60,10 +41,6 @@
 import {
     RiSunFill,
     RiMoonFill,
-    RiBankCardFill,
-    RiFunctionFill,
-    RiWallet2Fill,
-    RiBarChart2Fill,
     RiBarChartLine,
     RiLogoutBoxFill
 } from '@remixicon/vue';
@@ -73,11 +50,13 @@ import {
 } from '@/components/ui'
 
 import { useMainStore } from '@/stores/useMainStore';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+import { useNavigationStore } from '@/stores/useNavigationStore';
 
 const router = useRouter();
-
+const route = useRoute();
 const mainStore = useMainStore();
+const navigationStore = useNavigationStore();
 
 </script>
 
